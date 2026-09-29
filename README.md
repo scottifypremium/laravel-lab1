@@ -80,3 +80,30 @@ http://127.0.0.1:8000
 
 ## GitHub Repository Link
 https://github.com/scottifypremium/laravel-lab1.git
+
+## Laboratory 2: Request Data Model
+
+### requests table
+| Field | Type | Constraint | Purpose |
+|---|---|---|---|
+| id | BIGINT UNSIGNED | Primary key, auto-increment | Unique request number |
+| requester_name | VARCHAR(100) | NOT NULL | Person submitting the request |
+| requester_email | VARCHAR(255) | NOT NULL | Contact address |
+| item_name | VARCHAR(150) | NOT NULL | Requested item or service |
+| quantity | INT UNSIGNED | NOT NULL | Requested quantity |
+| purpose | TEXT | NOT NULL | Reason for the request |
+| status | VARCHAR(20) | NOT NULL, default `pending` | Request state |
+| created_at, updated_at | TIMESTAMP | Nullable | Creation and update times |
+
+### Migration command
+php artisan migrate
+
+### How to verify the table
+1. Run `php artisan migrate:status` and check that `create_requests_table` is marked Ran.
+2. Open the database in phpMyAdmin and check the Structure tab of `requests`.
+3. Run `SELECT id, requester_name, item_name, quantity, status FROM requests;`
+
+### User stories
+1. As a requester, I want to record my name, email, item, quantity, and purpose so that my request is saved and can be reviewed later.
+2. As a staff reviewer, I want to see the item, quantity, purpose, and status of each request so that I can decide which requests need action.
+3. As a record keeper, I want every request to have a unique number and time records so that I can trace when it was created and last changed.
