@@ -107,3 +107,16 @@ php artisan migrate
 1. As a requester, I want to record my name, email, item, quantity, and purpose so that my request is saved and can be reviewed later.
 2. As a staff reviewer, I want to see the item, quantity, purpose, and status of each request so that I can decide which requests need action.
 3. As a record keeper, I want every request to have a unique number and time records so that I can trace when it was created and last changed.
+
+### Dependency audit
+- `composer audit`: no security vulnerability advisories found.
+- `npm audit`: 9 vulnerabilities (2 moderate, 5 high, 2 critical) in JavaScript build tools.
+  No forced upgrade was applied because the suggested fix is a breaking Tailwind change.
+  Follow-up: review the advisories and update the packages in a separate reviewed pull request.
+
+### Secrets and safe errors
+- `.env` is excluded by `.gitignore`; `.env.example` has no real credentials.
+- Passwords are hashed with Laravel's `Hash::make`.
+- Set `APP_DEBUG=false` on any shared or deployed environment.
+- If a secret is ever exposed, revoke or rotate it first, then remove it and clean the
+  Git history. Deleting the file alone is not enough.
